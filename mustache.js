@@ -248,7 +248,9 @@ var Mustache = (typeof module !== "undefined" && module.exports) || {};
         }
         return buffer;
       } else {
-        return callback(context.push(value), this);
+        if (value !== null) {
+          return callback(context.push(value), this);
+        }
       }
       break;
     case "function":
