@@ -260,6 +260,9 @@ var Mustache = (typeof module !== "undefined" && module.exports) || {};
       };
       return value.call(context.view, sectionText, scopedRender) || "";
       break;
+    case "number":
+      return callback(context, this);
+      break;
     default:
       if (value) {
         return callback(context, this);
