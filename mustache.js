@@ -261,7 +261,9 @@ var Mustache = (typeof module !== "undefined" && module.exports) || {};
       return value.call(context.view, sectionText, scopedRender) || "";
       break;
     case "number":
-      return callback(context, this);
+      if (value !== 0 ) {
+        return callback(context, this);
+      }
       break;
     default:
       if (value) {
@@ -278,7 +280,7 @@ var Mustache = (typeof module !== "undefined" && module.exports) || {};
     // From the spec: inverted sections may render text once based on the
     // inverse value of the key. That is, they will be rendered if the key
     // doesn't exist, is false, or is an empty list.
-    if (value == null || value === false || (isArray(value) && value.length === 0)) {
+    if (value == null || value === false || value === 0 || (isArray(value) && value.length === 0)) {
       return callback(context, this);
     }
 
